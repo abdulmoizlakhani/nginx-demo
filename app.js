@@ -5,7 +5,7 @@ const app = express();
 app.use(express.static("public"));
 
 app.use("/", (req, res) => {
-  res.sendFile("./index.html");
+  res.sendFile("./index.html", { root: __dirname });
 });
 
 app.listen(3000, () => {
