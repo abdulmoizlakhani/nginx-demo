@@ -14,8 +14,9 @@ app.use("/url/meta/:lang?", (req, res) => {
     } else {
       res.sendFile(`./${lang}/page.html`, { root: __dirname + "/public" });
     }
+  } else {
+    res.sendFile("./page.html", { root: __dirname + "/public" });
   }
-  res.sendFile("./page.html", { root: __dirname + "/public" });
 });
 
 app.listen(3000, () => {
