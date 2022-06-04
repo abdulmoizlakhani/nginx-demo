@@ -30,8 +30,22 @@
   <body>
     <header>
       <h2>
-        <a href="/"> NGINX Demo </a>
+        <a href="/url/meta/ko">NGINX Demo - Korean</a>
       </h2>
+      <select id="lang-select" onchange="handleOnChange()">
+        <option value="en">English</option>
+        <option value="ja">Japanese</option>
+        <option selected value="ko">Korean</option>
+        <option value="zh-cn">Chinese</option>
+      </select>
     </header>
+
+    <script>
+      function handleOnChange(event) {
+        var lang = document.getElementById("lang-select").value;
+        const url = `/url/meta/${lang}`;
+        window.location.href = url;
+      }
+    </script>
   </body>
 </html>

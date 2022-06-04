@@ -1,11 +1,21 @@
+const path = require("path");
 const express = require("express");
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", (req, res) => {
-  res.sendFile("./index.html", { root: __dirname });
+app.use("/url/meta/:lang?", (req, res) => {
+  const lang = req.params.lang;
+  if (lang) {
+    if (lang === "en") {
+      res.sendFile(`./page.html`, { root: __dirname + "/public" });
+    } else {
+      res.sendFile(`./${lang}/page.html`, { root: __dirname + "/public" });
+    }
+  }
+  res.sendFile("./page.html", { root: __dirname + "/public" });
 });
 
 app.listen(3000, () => {

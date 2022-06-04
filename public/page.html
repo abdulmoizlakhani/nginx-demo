@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NGINX Demo</title>
+    <style>
+      header {
+        background-color: lightgrey;
+        height: 45px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+      }
+
+      h2 {
+        padding: 12px 24px;
+        margin: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>
+        <a href="/url/meta/en">NGINX Demo - English</a>
+      </h2>
+      <select id="lang-select" onchange="handleOnChange()">
+        <option selected value="en">English</option>
+        <option value="ja">Japanese</option>
+        <option value="ko">Korean</option>
+        <option value="zh-cn">Chinese</option>
+      </select>
+    </header>
+
+    <script>
+      function handleOnChange(event) {
+        var lang = document.getElementById("lang-select").value;
+        const url = `/url/meta/${lang}`;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
