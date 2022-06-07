@@ -32,6 +32,11 @@
       <h2>
         <a href="/url/meta/ko">NGINX Demo - About - Korean</a>
       </h2>
+      <select id="page-select" onchange="handleOnPageChange()">
+        <option value="home">Home</option>
+        <option selected value="about">About</option>
+        <option value="contact">Contact</option>
+      </select>
       <select id="lang-select" onchange="handleOnChange()">
         <option value="en">English</option>
         <option value="ja">Japanese</option>
@@ -41,10 +46,16 @@
     </header>
 
     <script>
+      function handleOnPageChange(event) {
+        var page = document.getElementById("page-select").value;
+        const url = `/url/meta/${page}`;
+        window.location.href = url;
+      }
       function handleOnChange(event) {
         var lang = document.getElementById("lang-select").value;
-        const url = `/url/meta/${lang}`;
-        window.location.href = url;
+        const url = window.location.href.split("?");
+        const newUrl = url[0] + "?lang=" + lang;
+        window.location.href = newUrl;
       }
     </script>
   </body>

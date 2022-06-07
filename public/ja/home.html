@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NGINX Demo</title>
+    <title>Home - NGINX Demo</title>
     <style>
       header {
         background-color: lightgrey;
@@ -30,21 +30,32 @@
   <body>
     <header>
       <h2>
-        <a href="/url/meta/ko">NGINX Demo - Korean</a>
+        <a href="/url/meta/ja">NGINX Demo - Home - Japanese</a>
       </h2>
+      <select id="page-select" onchange="handleOnPageChange()">
+        <option selected value="home">Home</option>
+        <option value="about">About</option>
+        <option value="contact">Contact</option>
+      </select>
       <select id="lang-select" onchange="handleOnChange()">
         <option value="en">English</option>
-        <option value="ja">Japanese</option>
-        <option selected value="ko">Korean</option>
+        <option selected value="ja">Japanese</option>
+        <option value="ko">Korean</option>
         <option value="zh-cn">Chinese</option>
       </select>
     </header>
 
     <script>
+      function handleOnPageChange(event) {
+        var page = document.getElementById("page-select").value;
+        const url = `/url/meta/${page}`;
+        window.location.href = url;
+      }
       function handleOnChange(event) {
         var lang = document.getElementById("lang-select").value;
-        const url = `/url/meta/${lang}`;
-        window.location.href = url;
+        const url = window.location.href.split("?");
+        const newUrl = url[0] + "?lang=" + lang;
+        window.location.href = newUrl;
       }
     </script>
   </body>
